@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+<head>
+	<title>Netapp Configuration Manager</title>
+	<meta name="keywords" content="">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="index.css"></link>
+	<script type="text/javascript" src="ractive.min.js"></script>
+</head>
+<body>
+<div id='container' class="container"></div>
+<script id="template" type="text/ractive">
+<header>
+	<img class="header-icon" src="img/database.svg" />
+	<h1>Netapp Configuration Manager</h1>
+</header>
+<main>
+	<h2>Export Policy Changes</h2>
+	<ul class="change-wrapper">
+		{{#exportPolicyChanges}}
+		<li class="change-item accordion-item open">
+			<div class="change-header accordion-title">
+				<h3 class="change-field change-target">{{target}}</h3>
+				<div class="change-field change-rollback"><a class="change-rollback-action">rollback</a></div>
+			</div>
+			<div class="accordion-content">
+				<table class="change-table exports">
+					<tr>
+						<th class="td-changetype"></th>	
+						<th>rule</th>	
+						<th>date</th>	
+						<th>clientmatch</th>	
+						<th class="center">rwrule</th>	
+						<th class="center">rorule</th>	
+						<th class="center">superuser</th>	
+						<th>anon</th>	
+						<th class="center">protocol</th>	
+						<th>allow_suid</th>	
+						<th>allow_dev</th>	
+					</tr>
+					
+					{{#changes}}
+					<tr class="type-{{changetype}}">
+						<td class="td-changetype"><span class="tag tag-{{changetype}}">{{changetype}}</span></td>
+						<td>{{ruleindex}}</td>
+						<td>{{date}}</td>
+						<td>{{{fields.clientmatch.length > 1 ? '<div class="val old-val">' + fields.clientmatch.0 + '</div><div class="val new-val">'+ fields.clientmatch.1 + '</div>' : fields.clientmatch.0}}}</td>
+						<td class="center">{{{fields.rwrule.length > 1 ? '<div class="val old-val">' + fields.rwrule.0 + '</div><div class="val new-val">'+ fields.rwrule.1 + '</div>' : fields.rwrule.0}}}</td>
+						<td class="center">{{{fields.rorule.length > 1 ? '<div class="val old-val">' + fields.rorule.0 + '</div><div class="val new-val">'+ fields.rorule.1 + '</div>' : fields.rorule.0}}}</td>
+						<td class="center">{{{fields.superuser.length > 1 ? '<div class="val old-val">' + fields.superuser.0 + '</div><div class="val new-val">'+ fields.superuser.1 + '</div>' : fields.superuser.0}}}</td>
+						<td>{{{fields.anon.length > 1 ? '<div class="val old-val">' + fields.anon.0 + '</div><div class="val new-val">'+ fields.anon.1 + '</div>' : fields.anon.0}}}</td>
+						<td class="center">{{{fields.protocol.length > 1 ? '<div class="val old-val">' + fields.protocol.0 + '</div><div class="val new-val">'+ fields.protocol.1 + '</div>' : fields.protocol.0}}}</td>
+						<td>{{{fields.allow_suid.length > 1 ? '<div class="val old-val">' + fields.allow_suid.0 + '</div><div class="val new-val">'+ fields.allow_suid.1 + '</div>' : fields.allow_suid.0}}}</td>
+						<td>{{{fields.allow_dev.length > 1 ? '<div class="val old-val">' + fields.allow_dev.0 + '</div><div class="val new-val">'+ fields.allow_dev.1 + '</div>' : fields.allow_dev.0}}}</td>
+					</tr>
+					{{/changes}}
+				</table>
+			</div>			
+		</li>
+		{{/exportPolicyChanges}}
+	</ul>
+	<h2>Quota Changes</h2>
+	<ul class="change-wrapper">
+		{{#quotaChanges}}
+		<li class="change-item accordion-item open">
+			<div  class="change-header accordion-title">
+				<h3 class="change-field change-target">{{target}}</h3>
+				<div class="change-field change-rollback"><a class="change-rollback-action">rollback</a></div>
+			</div>
+			<div class="accordion-content">
+				<table class="change-table quota">
+					<tr>
+						<th class="td-changetype"></th>	
+						<th class="td-quotapath">path</th>	
+						<th>date</th>	
+						<th class="right">disklimit</th>	
+						<th class="right">filelimit</th>	
+						<th>type</th>		
+					</tr>
+					
+					{{#changes}}
+					<tr class="type-{{changetype}}">
+						<td class="td-changetype"><span class="tag tag-{{changetype}}">{{changetype}}</span></td>
+						<td class="td-quotapath">{{quotapath}}</td>
+						<td>{{date}}</td>
+						<td class="right">{{{fields.disklimit.length > 1 ? '<div class="val old-val">' + fields.disklimit.0 + '</div><div class="val new-val">'+ fields.disklimit.1 + '</div>' : fields.disklimit.0}}}</td>
+						<td class="right">{{{fields.filelimit.length > 1 ? '<div class="val old-val">' + fields.filelimit.0 + '</div><div class="val new-val">'+ fields.filelimit.1 + '</div>' : fields.filelimit.0}}}</td>
+						<td>{{{fields.type.length > 1 ? '<div class="val old-val">' + fields.type.0 + '</div><div class="val new-val">'+ fields.type.1 + '</div>' : fields.type.0}}}</td>
+					</tr>
+					{{/changes}}
+				</table>
+			</div>			
+		</li>
+		{{/quotaChanges}}
+	</ul>
+
+</main>
+</script>
+<script type="text/javascript" src="example.js"></script>
+</body>
+</html>

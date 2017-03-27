@@ -1,0 +1,149 @@
+@charset "UTF-8";
+@import '../fonts/fonts.css';
+@import 'reset.css';
+
+/* colors 
+primär - blau: #2D4B9B
+primär- heller: #778FE7
+primär - hellste: #D7DCF8;
+
+*/
+html {
+	font-size: 18px;
+}
+body {
+	font: 1em/1 'Alegreya Sans', sans-serif;
+	font-weight: 400;
+}
+/*h1	{ font-size: 3.998rem; }*/
+h1	{ font-size: 2.827rem; }
+h2	{ font-size: 1.999rem; }
+h3	{ font-size: 1.414rem; }
+small	{ font-size: 0.707rem; }
+strong,label { font-weight: 500; }
+h2 { margin: 2rem 0 1rem 0; }
+
+/* Page Layout */
+
+header {
+	background: #2D4B9B;
+	color: white;
+	padding: 1rem;
+	width: 100%;
+}
+
+header h1 { display: inline-block; } 
+
+.header-icon { height: 2.827rem; display: inline-block; margin-right: 1rem; }
+.active { color: #b98f00;}
+
+.navigation {}
+.navigation-item {
+	display: inline;
+}
+.navigation-item + .navigation-item:before {
+	content: " | "
+}
+
+main {
+	margin: 2rem;
+}
+	
+footer {}	
+
+/* Helpers */
+
+.right { text-align: right; }
+.center { text-align: center; }
+.full-size { width: 100%; }
+
+.fr { float: right; }
+/* Table Styling */
+.data-table { 
+	margin-top: 1rem; 
+	width: 100%;
+}
+
+td, th {
+	padding: 0.3rem 0.5rem 0.4rem;
+}
+td:nth-child(2), th:nth-child(2) {
+	padding-left: 0;
+}	
+th { 
+	font-weight: 500; 
+	color: #2D4B9B;
+	text-align: left;
+}
+th {
+	border-bottom: 1px solid #2D4B9B;
+}
+td {
+	border-bottom: 1px solid #D7DCF8;
+	vertical-align: middle;
+}
+tr {
+	transition: background .3s ease-in;
+}
+tr + tr:hover {
+	background: #D7DCF8;
+}
+td:empty {
+    padding: 0;
+}
+/* Form Elements */
+
+.button { 
+	background: #B98F00; 
+	color: white; 
+	border-radius: 5px; 
+	padding: .25rem .5rem;
+	margin-left: .5rem;
+	transition: all .3s ease-in; 
+	}
+	
+.button:hover { background: #7B5E00; }
+.input-medium { 
+	margin-top: 0.2rem;
+	width: 15rem; 
+}
+.action {
+	color: #2D4B9B;
+	font-size: .9rem;
+}
+.action:hover {
+	text-decoration: underline;
+}
+label {
+	text-align: right;
+	display: inline-block;
+	width: 6rem;
+	margin-right: .25rem;
+}
+.form-group {
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: flex-end;
+}
+/* Index Cards */
+
+.card-wrapper { 
+	width: 100%; 
+	display: flex;
+	flex-flow: row wrap;
+}
+.card { 
+	width: calc(50% - 1rem);
+	padding: 1rem;
+	border: 1px solid rgba(154, 118, 0, 0.5);
+	margin-bottom: 1rem;
+	margin-right: 1rem;
+	border-radius: .25rem;
+	transition: background .2s ease-in;
+	background: rgba(154, 118, 0, 0.2) none repeat scroll 0 0;	
+}
+.card:hover {
+	background: rgba(154, 118, 0, 0.3) none repeat scroll 0 0;		
+}
+.card-header {	
+}

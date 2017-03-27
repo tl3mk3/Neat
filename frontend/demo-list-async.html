@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+
+<head>
+    <script src="lib/ractive.min.js"></script>
+</head>
+
+<body>
+    <div id="container"></div>
+
+    <script id='template' type='text/ractive'>
+
+        <main>
+
+            <select value={{selectedController}}>
+                <option value="Notfallsystem">Notfallsystem</option>
+            </select>
+            <button on-click="getExportPolicies" class="button">List Export Policies</button>
+
+            <table class="data-table">
+                <tr>
+                    <th>PolicyId</th>
+                    <th>PolicyName</th>
+                    <th>PolicyIdSpecified</th>
+                    <th>Vserver</th>
+                </tr>
+                {{#results}}
+                <tr>
+                    <td>{{PolicyId}}</td>
+                    <td>{{PolicyName}}</td>
+                    <td>{{PolicyIdSpecified}}</td>
+                    <td>{{Vserver}}</td>
+                </tr>
+                {{/results}}
+            </table>
+
+        </main>
+    </script>
+    <script src="js/common.js"></script>
+    <script src="js/demo-list-async.js"></script>
+
+</body>
+
+</html>

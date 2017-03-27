@@ -1,0 +1,31 @@
+[{
+	"Name": "DEFAULT",
+	"Address": "10.3.3.171",
+	"Port": "443",
+	"User": "admin",
+	"pwd": "NetAppV3xxx"
+},{
+	"Name": "cluster1.int.v3consulting.com",
+	"Address": "10.3.3.171",
+	"Port": "443",
+	"User": "admin",
+	"pwd": "NetAppV3xxx"
+},{
+	"Name": "Notfallsystem XXX",
+	"Address": "10.3.3.171",
+	"Port": "443",
+	"User": "admin",
+	"pwd": "NetAppV3xxx"
+}, {
+	"Name": "Controller 4711",
+	"Address": "10.3.3.171",
+	"Port": "443",
+	"User": "admin",
+	"pwd": "\"F:4\u003c"
+}, {
+	"Name": "Leer Für Test",
+	"Address": "",
+	"Port": "",
+	"User": "",
+	"pwd": ""
+}]

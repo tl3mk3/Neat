@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+	<title>Edit Export Rules</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="lib/ractive.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/index.css"></link>
+</head>
+<body>
+	<div id="container"></div>
+
+	<script id='template' type='text/ractive'>	
+	<header>
+		<img class="header-icon" src="img/database.svg" />
+		<h1><a href="index.html">{{siteConf.siteName}}</a></h1>
+		<div class="fr">
+			<ul class="navigation">
+			{{#siteConf.pages}}
+				<li class="navigation-item"><a href="{{url}}">{{title}}</a></li>
+			{{/siteConf.pages}}
+			</ul>
+		</div>
+	</header>
+	<main>
+		<div>
+			<h2>Edit Export Rules</h2>
+			<button id="send" class="button">BACK</button>
+		</div>
+	<div class="form-group">
+		<div>
+			<label>PolicyName</label>
+			<input type="text" id="controller" name="controller" value="vserver02_vol21_export_policy" class="input-medium" />
+			<label>ClientMatch</label> 
+			<input type="text" id="vserver" name="vserver" value="10.3.3.144" class="input-medium" /><br />
+			<label>Protocol</label>
+			<input type="text" id="controller" name="controller" value="nfs" class="input-medium" />
+			<label>RoRule</label> 
+			<input type="text" id="vserver" name="vserver" value="sys" class="input-medium" /><br />
+			<label>RwRule</label>
+			<input type="text" id="controller" name="controller" value="sys" class="input-medium" />
+			<label>VServer</label> 
+			<input type="text" id="vserver" name="vserver" value="vserver02" class="input-medium" />
+		</div>
+		<div>
+			<button id="send" class="button">SAVE</button>
+		</div>
+	</div>
+</main>
+	</script>
+	<script src="js/common.js"></script>
+	<script src="js/export-rules.js"></script>
+
+</body>
+</html>

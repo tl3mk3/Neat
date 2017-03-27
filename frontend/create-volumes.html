@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+	<title>Create Volume - V3NA-Controll</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="lib/ractive.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/index.css"></link>
+</head>
+<body>
+	<div id="container"></div>
+
+	<script id='template' type='text/ractive'>	
+	<header>
+		<img class="header-icon" src="img/database.svg" />
+		<h1><a href="index.html">V3NA-Controll</a></h1>
+		<div class="fr">
+			<a href="list-controllers.html">Controller List</a> |
+			<a href="list-volumes.html">Volume List</a> |
+			<a class="active" href="export-policies.html">Export Policies</a> |
+			<a href="export-rules.html">Export Rules</a>	
+		</div>
+	</header>
+	<main>
+		<div>
+			<h2>Create Volumes</h2>
+		</div>
+	<div class="form-group">
+		<div>
+			<label>Controller</label>
+			<input type="text" id="controller" name="controller" value="cluster1.int.v3consulting.com" class="input-medium" />
+			<label>VServer</label>
+			<input type="text" id="vserver" name="vserver" value="vserver02" class="input-medium" />
+			<h3>Volume:</h3>
+			<label>Volume Name</label>
+			<input type="text" id="volumeName" name="volumeName" value="" class="input-medium" />
+			<label>Aggregate</label> 
+			<input type="text" id="aggregate" name="aggregate" value="aggr0" class="input-medium" /><br />
+			<label>JunctionPath</label>
+			<input type="text" id="junctionPath" name="junctionPath" value="/xxxxx" class="input-medium" />
+			<label>Size</label> 
+			<input type="text" id="size" name="size" value="20971520" class="input-medium" />				
+			<h3>QTree 1:</h3>
+			<label>Name</label> 
+			<input type="text" id="nameqt1" name="nameqt1" value="" class="input-medium" /><br />
+			<label>ReadOnlySecurityFlavor</label>
+			<input type="text" id="ReadOnlySecurityFlavor1" name="ReadOnlySecurityFlavor1" value="any" class="input-medium" /><br />
+			<label>ReadWriteSecurityFlavor</label> 
+			<input type="text" id="ReadWriteSecurityFlavor1" name="ReadWriteSecurityFlavor1" value="sys" class="input-medium" /><br />
+			<h3>QTree 2:</h3>
+			<label>Name</label> 
+			<input type="text" id="nameqt2" name="nameqt2" value="" class="input-medium" /><br />
+			<label>ReadOnlySecurityFlavor</label>
+			<input type="text" id="ReadOnlySecurityFlavor2" name="ReadOnlySecurityFlavor2" value="any" class="input-medium" /><br />
+			<label>ReadWriteSecurityFlavor</label> 
+			<input type="text" id="ReadWriteSecurityFlavor2" name="ReadWriteSecurityFlavor2" value="sys" class="input-medium" /><br />
+			<h3>QTree 3:</h3>
+			<label>Name</label> 
+			<input type="text" id="nameqt3" name="nameqt3" value="" class="input-medium" /><br />
+			<label>ReadOnlySecurityFlavor</label>
+			<input type="text" id="ReadOnlySecurityFlavor3" name="ReadOnlySecurityFlavor3" value="any" class="input-medium" /><br />
+			<label>ReadWriteSecurityFlavor</label> 
+			<input type="text" id="ReadWriteSecurityFlavor3" name="ReadWriteSecurityFlavor3" value="sys" class="input-medium" /><br />
+			<h3>QTree 4:</h3>
+			<label>Name</label> 
+			<input type="text" id="nameqt4" name="nameqt4" value="" class="input-medium" /><br />
+			<label>ReadOnlySecurityFlavor</label>
+			<input type="text" id="ReadOnlySecurityFlavor4" name="ReadOnlySecurityFlavor4" value="any" class="input-medium" /><br />
+			<label>ReadWriteSecurityFlavor</label> 
+			<input type="text" id="ReadWriteSecurityFlavor4" name="ReadWriteSecurityFlavor4" value="sys" class="input-medium" /><br />
+			<h3>QTree 5:</h3>
+			<label>Name</label> 
+			<input type="text" id="nameqt5" name="nameqt5" value="" class="input-medium" /><br />	
+			<label>ReadOnlySecurityFlavor</label>
+			<input type="text" id="ReadOnlySecurityFlavor5" name="ReadOnlySecurityFlavor5" value="any" class="input-medium" /><br />
+			<label>ReadWriteSecurityFlavor</label> 
+			<input type="text" id="ReadWriteSecurityFlavor5" name="ReadWriteSecurityFlavor5" value="sys" class="input-medium" /><br />	
+		</div>
+		<div>
+			<button id="send" class="button">create</button>
+		</div>
+		<label> <input type="checkbox" name="debug" checked={{debug}}> Debug Mode? </label>
+	</div>
+</main>
+	</script>
+	<script src="js/common.js"></script>
+	<script src="js/create-volumes.js"></script>
+
+</body>
+</html>

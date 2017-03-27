@@ -1,0 +1,7 @@
+{
+	"admin": "Ralph",
+	"adminMailFrom": "absender@v3consulting.com",
+	"adminMailTo": ["panik@v3consulting.com"],
+	"globalLogLevel": "warning",
+	"globalPath": "C:\\NEat\\backend\\"
+}

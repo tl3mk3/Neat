@@ -1,0 +1,18 @@
+{
+	user: "USERNAME",
+	mailFrom: "NAME@FIRMA",
+	mailTo: 
+	[
+		"NAME@FIRMA",
+		"NAME@FIRMA"
+		
+	],
+	command: "verb-noun",
+	controller: controller,
+	debug: debug,
+	param: {
+		"param1": wert1,
+		"param2": wert2,
+		"param3": wert3
+	}
+}

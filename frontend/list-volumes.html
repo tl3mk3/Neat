@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+	<title>Volume List</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="lib/ractive.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/index.css"></link>
+</head>
+<body>
+	<div id="container"></div>
+
+	<script id='template' type='text/ractive'>	
+	<header>
+		<img class="header-icon" src="img/database.svg" />
+		<h1><a href="index.html">{{siteConf.siteName}}</a></h1>
+		<div class="fr">
+			<ul class="navigation">
+			{{#siteConf.pages}}
+				<li class="navigation-item"><a href="{{url}}">{{title}}</a></li>
+			{{/siteConf.pages}}
+			</ul>
+		</div>
+	</header>
+	<main>
+	<label>Controller</label>
+	<select value={{selectedController}}>
+		{{#controllers}}
+			<option value="{{Name}}">{{Name}}</option>	
+		{{/controllers}}
+	</select>	
+	<button on-click="listVolumes" class="button">List Volumes</button>
+	<label> <input type="checkbox" name="debug" checked={{debug}}> Debug Mode? </label>
+	<h2>Volumes</h2>
+	<table class="data-table">
+		<tr>
+			<th>Name</th>	
+			<th class="right">TotalSize</th>	
+			<th class="right">Used (%)</th>	
+			<th class="right">SIS Status</th>
+			<th class="right">Commands</th>		
+		</tr>
+	{{#results}}
+		<tr>
+			<td>{{Name}}</td>
+			<td class="right">{{TotalSize}}</td>
+			<td class="right">{{Used}}</td>
+			<td class="right">{{sis}}</td>
+			<td class="right"><a class="action" on-click="changeSisStatus">Change SIS Status</a></td>
+		</tr>
+	{{/results}}
+	</table>
+
+</main>
+	</script>
+	<script src="js/common.js"></script>
+	<script src="js/list-volumes.js"></script>
+
+</body>
+</html>

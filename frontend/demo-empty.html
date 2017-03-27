@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>DEMO Empty</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="lib/ractive.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/index.css"></link>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script id='template' type='text/ractive'>
+        <header>
+            <img class="header-icon" src="img/database.svg" />
+            <h1><a href="index.html">{{siteConf.siteName}}</a></h1>
+            <div class="fr">
+                <ul class="navigation">
+                    {{#siteConf.pages}}
+                    <li class="navigation-item"><a href="{{url}}">{{title}}</a>
+                    </li>
+                    {{/siteConf.pages}}
+                </ul>
+            </div>
+        </header>
+        <main>
+            <h2>Empty</h2>
+        </main>
+    </script>
+    <script src="js/common.js"></script>
+    <script src="js/DEMO-empty.js"></script>
+</body>
+
+</html>

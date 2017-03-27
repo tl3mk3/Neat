@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+
+<head>
+    <script src="lib/ractive.min.js"></script>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script id='template' type='text/ractive'>
+
+        <main>
+            <table class="data-table">
+                <tr>
+                    <th>Name</th>
+                    <th>Mode</th>
+                    <th class="right">Address</th>
+                    <th class="right">Port</th>
+                    <th class="right">Commands</th>
+                </tr>
+
+                {{#controllers}}
+                <tr>
+                    <td>{{Name}}</td>
+                    <td>{{Mode}}</td>
+                    <td class="right">{{Address}}</td>
+                    <td class="right">{{Port}}</td>
+                    <td class="right"><a href="list-volumes.html?controller={{Name}}">Volume List</a>|<a href="export-policies.html?controller={{Name}}">Export Policies</a>|<a href="export-rules.html?controller={{Name}}">Export Rules</a>|<strike>Admin Menu</strike>
+                    </td>
+                </tr>
+                {{/controllers}}
+            </table>
+
+        </main>
+    </script>
+    <script src="js/common.js"></script>
+    <script src="js/demo-list-sync.js"></script>
+</body>
+
+</html>
