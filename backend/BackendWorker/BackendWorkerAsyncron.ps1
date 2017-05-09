@@ -10,6 +10,8 @@ param (
   [string]$id
 )
 
+Import-Module "$PSScriptRoot\intern\write-V3log\write-easylog.psm1"
+
 try
 {
     $json = Get-Content $PSScriptRoot\json\in\$id.json | ConvertFrom-Json
@@ -19,10 +21,12 @@ try
 
     $timestamp + ": in work" >> $PSScriptRoot\json\out\$id.status
 
+    write-easylog -id $id -logtext "Start Invoke Command $command"
     $result = Invoke-Expression ("$PSScriptRoot\commands\$command\start.ps1 -id $id")
+    write-easylog -id $id -logtext "End Invoke Command"
 
     "$PSScriptRoot\commands\$command\start.ps1 -id $id"
-    $result
+    #$result
 
     $result | ConvertTo-Json >> $PSScriptRoot\json\out\$id.json
 
@@ -31,7 +35,5 @@ try
 }
 catch
 {
-    $timestamp + ": ERROR " >> $PSScriptRoot\json\out\$id.status
-    $_.Exception.Message >> $PSScriptRoot\json\out\$id.status
-    $_.Exception.ItemName >> $PSScriptRoot\json\out\$id.status
+    $timestamp + ": ERROR: " + $_.Exception.Message >> $PSScriptRoot\json\out\$id.status
 }

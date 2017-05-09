@@ -2,7 +2,7 @@
 # ---
 
 param (
-  [string]$id = "149001763329717"
+  [string]$id
 )
 
 #Vorarbeiten

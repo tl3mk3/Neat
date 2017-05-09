@@ -44,20 +44,24 @@ elseif ($command.StartsWith("SQLPlayground:"))
 else
 {    
     $config = Get-Content $PSScriptRoot\commands\$command\config.json | ConvertFrom-Json
-    Write-Host $config
     if ($config.immediately -eq $true)
     {
-        Write-Host ("Message1: " + $message)
+        write-easylog -id $TimeStamp -logtext "Befehlsausführung: Synchron"
+        write-easylog -id $TimeStamp -logtext "Befehlsausführung: gestartet"
         $message = Invoke-Expression ("$PSScriptRoot\commands\$command\start.ps1 -id $id")
-        Write-Host ("Message2: " + $message)
+        write-easylog -id $TimeStamp -logtext "Rückgabewert: $message"
+        write-easylog -id $TimeStamp -logtext "Befehlsausführung: beendet"
         #ToDo: Abfrage, ob ergebnis auch in JSON-OUT gespeichert werden soll 
         return ($message | ConvertTo-Json)
     }
     else
     {
+        write-easylog -id $TimeStamp -logtext "Befehlsausführung: Asynchron"
+        write-easylog -id $TimeStamp -logtext "Befehlsausführung: gestartet"
         Start-Process powershell "$PSScriptRoot\BackendWorkerAsyncron.ps1 $id"
         $timestamp = Get-Date -format "yyyy-mm-ddTHH:mm"
         $timestamp + " : übergeben" >> $PSScriptRoot\json\out\$id.status
         return ($id | ConvertTo-Json)
+        write-easylog -id $TimeStamp -logtext "Befehlsausführung: übergeben"
     }
 }

@@ -3,7 +3,7 @@
 # Vserver [string]
 
 param (
-  [string]$id = "148162829268118"
+  [string]$id
 )
 
 #Includes

@@ -9,6 +9,8 @@
 #dies erledigt der 
 
 # Start of script
+Remove-Module *
+Import-Module "$PSScriptRoot\..\BackendWorker\intern\write-V3log\write-easylog.psm1"
 [Reflection.Assembly]::LoadWithPartialName("System.Web") | Out-Null
 $listener = New-Object System.Net.HttpListener
 $listener.Prefixes.Add('http://+:8000/') # Must exactly match the netsh command above
@@ -40,8 +42,16 @@ function intCommand
         $StreamReader = New-Object System.IO.StreamReader $request.InputStream
         $json = [System.Web.HttpUtility]::UrlDecode($StreamReader.ReadToEnd())
 
-        $DateTime = (Get-Date).ToUniversalTime()
-        $TimeStamp = [System.Math]::Truncate((Get-Date -Date $DateTime -UFormat %s))
+        $TimeStamp = ((Get-Date -Date ((Get-Date).ToUniversalTime()) -UFormat %s).ToString()).Replace(",","-")
+        $TimeStamp = $TimeStamp.Replace(".","-")
+
+        write-easylog -id $TimeStamp -logtext (" Command = " + ($json | ConvertFrom-Json).command)
+        write-easylog -id $TimeStamp -logtext "-+-+-+-+-+-+-+-+-"
+        write-easylog -id $TimeStamp -logtext "Manueller Start via: cd $PSScriptRoot\..\"
+        write-easylog -id $TimeStamp -logtext "                     .\ID-Starter.ps1 -id $TimeStamp"
+        write-easylog -id $TimeStamp -logtext "-+-+-+-+-+-+-+-+-"
+        write-easylog -id $TimeStamp -logtext $json
+        write-easylog -id $TimeStamp -logtext "-+-+-+-+-+-+-+-+-"
 
         $json >> "$PSScriptRoot\..\BackendWorker\json\in\$TimeStamp.json"
 
@@ -50,7 +60,8 @@ function intCommand
     }
     catch
     {
-        $message = '{"Error": ' + ($_.Exception | ConvertTo-Json)  + '}'
+        Write-Host ($_.Exception)
+        $message = '{"Error": ' + $_.Exception  + '}'
     }
 
     return $message
@@ -111,7 +122,7 @@ function intResult
                 #es sollte immer ein Ergebnis geschrieben werden, selbst wenn NULL zurückgegeben wird
             }
         }
-        elseif (($status).contains(': ERROR '))
+        elseif (($status).contains(': ERROR: '))
         {
             $message = '{"ERROR": "' + $status + '"}'
             #Fehler, der von BackendWorkerAsyncron gefangen wurde
@@ -128,12 +139,20 @@ function intResult
         $message = '{"ERROR": "ID ist unbekannt"}'
     } 
 
+    write-easylog -id $id -logtext ("Result ID = $id")
+    if ($message.Length -gt 500) {
+        write-easylog -id $id -logtext ("Result = " + $message.Substring(0,495))
+    }else{
+        write-easylog -id $id -logtext "Result = $message"
+    }
+
     return $message
 }
 
 
 
 while ($true) {
+"###################################################################"
     Start-Sleep -Milliseconds 10 #kurzer break, damit auf keinen Fall die gleichen ID vergeben werden.
 
     #todo: alle variablen müssen am anfang dieser Schleife auf NULL gesetzt werden
@@ -142,7 +161,9 @@ while ($true) {
     $request = $context.Request
     $response = $context.Response
 
-    $context.Request.RemoteEndPoint.ToString() + "    " + $request.Url
+    write-easylog -id "----" -logtext ((Get-Date -Format s) + "   " + $context.Request.RemoteEndPoint.Address.ToString() + "    " + $request.Url)
+    #(Get-Date -Format s) + "   " + $context.Request.RemoteEndPoint.Address.ToString() + "    " + $request.Url
+
 
     $message = ""
 
