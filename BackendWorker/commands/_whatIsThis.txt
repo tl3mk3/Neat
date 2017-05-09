@@ -1,1 +1,0 @@
-Hier sind Commandos gelagert, die von V3 und Kunden erstellt werden und NUR direkt vom Frontend aufgerufen werden

@@ -1,1 +1,0 @@
-In diesem Ordner sind alle Einstellungen, die global verwendet werden.
