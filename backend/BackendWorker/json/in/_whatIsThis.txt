@@ -1,1 +1,1 @@
-In diesem Ordner sind alle JSON DATEIEN, welche Anfragen an den Server stellen.
+In diesem Ordner sind alle JSON Dateien abgelegt, die vom Frontend geschickt werden und Anfragen an den Backend-Server stellen.

@@ -1,1 +1,1 @@
-In diesem Ordner sind alle Log-Dateien.
+In diesem Ordner werden alle Log-Dateien abgelegt.

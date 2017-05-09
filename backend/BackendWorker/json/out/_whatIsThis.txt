@@ -1,1 +1,1 @@
-In diesem Ordner sind alle JSON Dateien, die mit Werten befüllt wurden.
+In diesem Ordner sind alle JSON Dateien abgelegt, die vom Backend-Server mit Werten befüllt wurden und zurück an das Frontend gehen zur Anzeige der Daten.
