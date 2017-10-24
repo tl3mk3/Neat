@@ -1,4 +1,6 @@
-var siteConf = {
+// This array is referenced during initialization of Ractive in all other .js files
+// and defines some configurations of the main web site.
+var siteConfData = {
 	siteName:"NEat",
 	pages:[{
 		title: "Controller List",
@@ -15,6 +17,9 @@ var siteConf = {
 	},]
 }
 
+
+// This function is used to handle asynchronous requests. It checks periodically
+// if the request has been finished. 
 function handleCommand(json){
 	console.log(json);
 	if (!json.SUCCESS) { 
@@ -30,6 +35,10 @@ function handleCommand(json){
 	}
 	repeated();
 }
+
+
+// This function is used by handleCommand and displays the result after the request
+// finished successfully.
 function handleResult(json, again) {
 	console.log(json);
 	if (!json.SUCCESS) { 
@@ -48,12 +57,16 @@ function handleResult(json, again) {
 	displayResult(finished);
 }
 
+
+// This function is used by handleResult and displays a result.
 function displayResult(result) {
 	ractive.set("results",result);
 	//for debug: insert json in <pre id=result>
 	//document.querySelector("#result").textContent = JSON.stringify(result, undefined, 2);
 }
 
+
+// This function is called from all other .js files and executes the request.
 function makeRequest(url,data,continuation) {
     var httpRequest = new XMLHttpRequest();
 	httpRequest.onreadystatechange = function() {
@@ -67,7 +80,6 @@ function makeRequest(url,data,continuation) {
 			else {
 				console.log('There was a problem with the request.');
 			}*/
-			
 		}
 	};
 	httpRequest.open('POST', url);
@@ -75,6 +87,12 @@ function makeRequest(url,data,continuation) {
 	httpRequest.send(JSON.stringify(data));	
 }
 
+
+// This function is called from other .js files if GET requests need to be parsed.
+// The function creates an array "params" that can be used to access the parsed data.
+// 
+// TL: Hier fehlt ein Beispiel der Datenstruktur, die verarbeitet wird
+//
 function extractUrlParameters(searchString) {
   var parse = function(params, pairs) {
     var pair = pairs[0];

@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
 	<title>Volume List</title>
 	<meta name="keywords" content="">
@@ -9,52 +10,73 @@
 	<script src="lib/ractive.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/index.css"></link>
 </head>
+
 <body>
+	<!-- This container is a placeholder for Ractive that is used to display
+	  the generated HTML code. -->
 	<div id="container"></div>
 
+	<!-- This is the script that generates the HTML code -->
 	<script id='template' type='text/ractive'>	
-	<header>
-		<img class="header-icon" src="img/database.svg" />
-		<h1><a href="index.html">{{siteConf.siteName}}</a></h1>
-		<div class="fr">
-			<ul class="navigation">
-			{{#siteConf.pages}}
-				<li class="navigation-item"><a href="{{url}}">{{title}}</a></li>
-			{{/siteConf.pages}}
-			</ul>
-		</div>
-	</header>
-	<main>
-	<label>Controller</label>
-	<select value={{selectedController}}>
-		{{#controllers}}
-			<option value="{{Name}}">{{Name}}</option>	
-		{{/controllers}}
-	</select>	
-	<button on-click="listVolumes" class="button">List Volumes</button>
-	<label> <input type="checkbox" name="debug" checked={{debug}}> Debug Mode? </label>
-	<h2>Volumes</h2>
-	<table class="data-table">
-		<tr>
-			<th>Name</th>	
-			<th class="right">TotalSize</th>	
-			<th class="right">Used (%)</th>	
-			<th class="right">SIS Status</th>
-			<th class="right">Commands</th>		
-		</tr>
-	{{#results}}
-		<tr>
-			<td>{{Name}}</td>
-			<td class="right">{{TotalSize}}</td>
-			<td class="right">{{Used}}</td>
-			<td class="right">{{sis}}</td>
-			<td class="right"><a class="action" on-click="changeSisStatus">Change SIS Status</a></td>
-		</tr>
-	{{/results}}
-	</table>
-
-</main>
+		
+		<header>
+			<img class="header-icon" src="img/database.svg" />
+			<h1><a href="index.html">{{siteConf.siteName}}</a></h1>
+			
+			<!-- List of navigation items to quickly execute some commands.
+			  The array siteConf is defined during initialization of Ractive in list-volumes.js.-->
+			<div class="fr">
+				<ul class="navigation">
+				{{#siteConf.pages}}
+					<li class="navigation-item"><a href="{{url}}">{{title}}</a></li>
+				{{/siteConf.pages}}
+				</ul>
+			</div>
+		</header>
+		
+		<main>
+			<!-- Create dropdown with list of controllers -->
+			<label>Controller</label>
+			<!-- The variable selectedController is defined during initialization of Ractive
+			  in list-volumes.js. The array 'controllers' is defined the same way and populated
+			  via getControllers and setControllers in list-volumes.js -->
+			<select value={{selectedController}}>
+				{{#controllers}}
+					<option value="{{Name}}">{{Name}}</option>	
+				{{/controllers}}
+			</select>
+			
+			<!-- Button that creates the event listVolumes which is handled by list-volumes.js -->
+			<button on-click="listVolumes" class="button">List Volumes</button>
+			
+			<!-- Checkbox to activate a debug mode -->
+			<label> <input type="checkbox" name="debug" checked={{debug}}> Debug Mode? </label>
+			
+			<!-- Table to display the results -->
+			<h2>Volumes</h2>
+			<table class="data-table">
+				<tr>
+					<th>Name</th>	
+					<th class="right">TotalSize</th>	
+					<th class="right">Used (%)</th>	
+					<th class="right">SIS Status</th>
+					<th class="right">Commands</th>		
+				</tr>
+			{{#results}}
+				<tr>
+					<td>{{Name}}</td>
+					<td class="right">{{TotalSize}}</td>
+					<td class="right">{{Used}}</td>
+					<td class="right">{{sis}}</td>
+					<td class="right"><a class="action" on-click="changeSisStatus">Change SIS Status</a></td>
+				</tr>
+			{{/results}}
+			</table>
+		</main>
+		
 	</script>
+	
+	<!-- Import other Javascript code -->
 	<script src="js/common.js"></script>
 	<script src="js/list-volumes.js"></script>
 

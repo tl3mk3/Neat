@@ -7,7 +7,7 @@ var ractive = new Ractive({
   // we're passing the ID of the <script> tag above.
   template: '#template',
   data: {
-	siteConf: siteConf,
+	siteConf: siteConfData,
 	//results: [],
 	controllers: []
   }
